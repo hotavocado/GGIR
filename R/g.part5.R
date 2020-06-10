@@ -101,7 +101,7 @@ g.part5 = function(datadir=c(),metadatadir=c(),f0=c(),f1=c(),strategy=1,maxdur=7
     cores=parallel::detectCores()
     Ncores = cores[1]
     if (Ncores > 3) {
-      cl <- parallel::makeCluster(Ncores-1) #not to overload your computer
+      cl <- parallel::makeCluster(10) #not to overload your computer
       doParallel::registerDoParallel(cl)
     } else {
       cat(paste0("\nparallel processing not possible because number of available cores (",Ncores,") < 4"))

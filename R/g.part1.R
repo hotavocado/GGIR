@@ -204,7 +204,7 @@ g.part1 = function(datadir=c(),outputdir=c(),f0=1,f1=c(),windowsizes = c(5,900,3
       } else if (chunksize > 0.6 & Nmetrics2calc >= 6) { # if user wants to extract more than 5 metrics
         chunksize = 0.4 # put limit to chunksize, because when processing in parallel memory is more limited
       }
-      cl <- parallel::makeCluster(Ncores-1) #not to overload your computer
+      cl <- parallel::makeCluster(10) #not to overload your computer
       doParallel::registerDoParallel(cl)
 
     } else {
