@@ -70,9 +70,9 @@ g.report.part5 = function(metadatadir=c(),f0=c(),f1=c(),loglocation=c(),
         output = output[-cut,which(colnames(output) != "")]
       }
 
-      out = as.matrix(output)
+      out = as.data.frame(output, stringsAsFactors=FALSE)
     }
-    outputfinal = as.data.frame(do.call(rbind,lapply(fnames.ms5[f0:f1],myfun)),stringsAsFactors=FALSE)
+    outputfinal = dplyr::bind_rows(lapply(fnames.ms5[f0:f1],myfun))
     # cut = which(outputfinal[1,] == "" & outputfinal[2,] == "")
     cut = which(sapply(outputfinal, function(x)all(x=="")) == TRUE)# Find columns filled with missing values which(output[1,] == "" & output[2,] == "")
     if (length(cut) > 0) {
